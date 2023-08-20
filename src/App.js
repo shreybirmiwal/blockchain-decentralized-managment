@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { TASK_ADDRESS, TASK_ABI } from "./contracts/Task_abi";
-import './App.css'
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -83,55 +82,100 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Task Manager</h1>
-      <p>Your account: {account}</p>
+    <div className="grid grid-cols-2">
 
-      <div>
-        <input
-          type="text"
-          placeholder="Task Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button onClick={createTask}>Create Task</button>
+      <div className='m-5 mt-10 items-center'>
+  
+        <h1 className='font-bold text-4xl'>Task Manager</h1>
 
+        <p className='mt-5 text-lg'>Your account: {account}</p>
+  
+        <div className="mt-5">
+          <input
+            type="text"
+            placeholder="Task Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className='bg-gray-100 p-3'
+          />
+          <button onClick={createTask} className='ml-5 bg-gray-100 hover:bg-gray-300 p-3'>Create Task</button>
+        </div>
+  
+        <div className="mt-5">
+          <input
+            type="number"
+            placeholder="Task ID"
+            value={taskId}
+            onChange={(e) => setTaskId(e.target.value)}
+            className='bg-gray-100 p-3'
+          />
+          <input
+            type="text"
+            placeholder="Assigned Address"
+            value={assignedAddress}
+            onChange={(e) => setAssignedAddress(e.target.value)}
+            className='bg-gray-100 p-3 ml-5'
+          />
+          <button onClick={assignTask} className='ml-5 bg-gray-100 hover:bg-gray-300 p-3'>Assign Task</button>
+
+        </div>
+  
+        <div className="mt-5">
+          <input
+            type="number"
+            placeholder="Task ID"
+            value={taskId2}
+            onChange={(e) => setTaskId2(e.target.value)}
+            className='bg-gray-100 p-3'
+          />
+          <button onClick={completeTask} className='ml-5 bg-gray-100 hover:bg-gray-300 p-3'>Complete Task</button>
+        </div>
+
+        <div className='mt-5'>
+          <input
+            value={getTransaction}
+            onChange={(e) => setTransactionGet(e.target.value)}
+            placeholder='Get task from id'
+            className='bg-gray-100 p-3'
+          />
+          <button onClick={test} className='ml-5 bg-gray-100 hover:bg-gray-300 p-3'>Get Task</button>    
+        </div>
+
+
+        <div className="mt-10 bg-stone-50">
+          <h1 className='font-bold text-2xl'>Task Info</h1>
+          <p className='mt-5'>Task: {returnedDetails[1]}</p>
+          <p className='mt-5'>Assigned: {returnedDetails[2]}</p>
+          <p className='mt-5'>Completed: {'' + returnedDetails[3]}</p>
+        </div>
+  
       </div>
+  
+      <div className='flex flex-col items-center m-5'>
 
-      <div>
-        <input
-          type="number"
-          placeholder="Task ID"
-          value={taskId}
-          onChange={(e) => setTaskId(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Assigned Address"
-          value={assignedAddress}
-          onChange={(e) => setAssignedAddress(e.target.value)}
-        />
-        <button onClick={assignTask}>Assign Task</button>
+        <h1 className='font-bold text-4xl mt-5'> Decentralized Task Management: A Transparent and Immutable Solution </h1>
+        <div className='overflow-scroll h-h-150 mt-5'>
+          <p>
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          In today's dynamic and collaborative work environments, efficient task management is crucial for productivity and success. However, existing task management systems often lack transparency and face challenges related to data integrity and accountability. This whitepaper introduces a groundbreaking solution that leverages blockchain technology to create a transparent and immutable task management system. By combining the benefits of decentralized ledgers and smart contracts, our solution addresses the shortcomings of traditional systems and establishes a new era of trust and efficiency in task management.
+          </p>
+        </div>
+  
       </div>
-
-      <div>
-        <input
-          type="number"
-          placeholder="Task ID"
-          value={taskId2}
-          onChange={(e) => setTaskId2(e.target.value)}
-        />
-        <button onClick={completeTask}>Complete Task</button>
-      </div>
-
-      <input value={getTransaction} onChange={(e) => setTransactionGet(e.target.value)} placeholder='Get task from id'/>
-      <button onClick={test}>Get Task </button>
-      <p>Task: {returnedDetails[1]}</p>
-      <p>Assigned: {returnedDetails[2]}</p>
-      <p>Completed: {'' + returnedDetails[3]}</p>
-
     </div>
   );
+  
 }
 
 export default App;
