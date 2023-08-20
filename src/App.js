@@ -10,30 +10,24 @@ function App() {
   const [assignedAddress, setAssignedAddress] = useState('');
 
 
-  const [taskID, settaskID] = useState(null)
-
-  useEffect(() => {
-    loadData();
-  }, []);
+  const [taskContractWithSigner, settaskContractWithSigner] = useState(null)
+  const [getTransaction, setTransactionGet] = useState('');
+  const [returnedDetails, setReturnedDetails] = useState('')
 
   const loadData = async () => {
     if (window.ethereum) {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      console.log(signer)
       const taskContract = new ethers.Contract(TASK_ADDRESS, TASK_ABI, signer);
+      settaskContractWithSigner(taskContract.connect(signer))
 
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         setAccount(accounts[0]);
         setContract(taskContract);
-
-        settaskID(taskContract.returnDetails(0))
-
       } catch (error) {
         console.error('Error connecting to wallet:', error);
       }
-
     } else {
       console.log("MetaMask not installed; using read-only defaults");
       const provider = ethers.getDefaultProvider();
@@ -42,9 +36,13 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    loadData();
+  }, []);
+
   const createTask = async () => {
     if (contract && description) {
-      try {        
+      try {
         await contract.createTask(description);
         console.log('Task created successfully.');
       } catch (error) {
@@ -53,9 +51,11 @@ function App() {
     }
   };
 
-  const test = () => {
-    console.log(taskID)
-  }
+  const test = async () => {
+    setReturnedDetails (await taskContractWithSigner.returnDetails(getTransaction));
+    console.log(returnedDetails)
+  };
+
 
   const assignTask = async () => {
     if (contract && taskId && assignedAddress) {
@@ -81,7 +81,6 @@ function App() {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button onClick={createTask}>Create Task</button>
-        <button onClick={test}>Create Task</button>
 
       </div>
 
@@ -100,6 +99,12 @@ function App() {
         />
         <button onClick={assignTask}>Assign Task</button>
       </div>
+
+      <input value={getTransaction} onChange={(e) => setTransactionGet(e.target.value)} placeholder='Get transaction from id'/>
+      <button onClick={test}>Get Transaction </button>
+      <p>Task: {returnedDetails[1]}</p>
+      <p>Assigned: {returnedDetails[2]}</p>
+      <p>Completed: {'' + returnedDetails[3]}</p>
 
     </div>
   );
