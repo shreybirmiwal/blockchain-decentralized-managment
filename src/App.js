@@ -7,6 +7,8 @@ function App() {
   const [contract, setContract] = useState(null);
   const [description, setDescription] = useState('');
   const [taskId, setTaskId] = useState('');
+  const [taskId2, setTaskId2] = useState('');
+
   const [assignedAddress, setAssignedAddress] = useState('');
 
 
@@ -68,6 +70,17 @@ function App() {
     }
   };
 
+  const completeTask = async () => {
+    if (contract && taskId2) {
+      try {
+        await contract.completeTask(taskId2);
+        console.log('Task completed successfully.');
+      } catch (error) {
+        console.error('Error completing task:', error);
+      }
+    }
+  };
+
   return (
     <div className="App">
       <h1>Task Manager</h1>
@@ -98,6 +111,16 @@ function App() {
           onChange={(e) => setAssignedAddress(e.target.value)}
         />
         <button onClick={assignTask}>Assign Task</button>
+      </div>
+
+      <div>
+        <input
+          type="number"
+          placeholder="Task ID"
+          value={taskId2}
+          onChange={(e) => setTaskId2(e.target.value)}
+        />
+        <button onClick={completeTask}>Complete Task</button>
       </div>
 
       <input value={getTransaction} onChange={(e) => setTransactionGet(e.target.value)} placeholder='Get transaction from id'/>
