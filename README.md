@@ -1,4 +1,4 @@
-DecentralizedManagement uses introduces a solution to the shortcomings of traditional task management systems. By leveraging blockchain technology, the proposed system ensures transparency, accountability, and data integrity in task assignments and completions, eliminating false claims, minimizing disputes, and enhancing productivity across diverse work environments.
+DecentralizedManagement introduces a solution to the shortcomings of traditional task management systems. By leveraging blockchain technology, the proposed system ensures transparency, accountability, and data integrity in task assignments and completions, eliminating false claims, minimizing disputes, and enhancing productivity across diverse work environments.
 
 Demo:
 
