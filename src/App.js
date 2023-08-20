@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { TASK_ADDRESS, TASK_ABI } from "./contracts/Task_abi";
+import './App.css'
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -123,8 +124,8 @@ function App() {
         <button onClick={completeTask}>Complete Task</button>
       </div>
 
-      <input value={getTransaction} onChange={(e) => setTransactionGet(e.target.value)} placeholder='Get transaction from id'/>
-      <button onClick={test}>Get Transaction </button>
+      <input value={getTransaction} onChange={(e) => setTransactionGet(e.target.value)} placeholder='Get task from id'/>
+      <button onClick={test}>Get Task </button>
       <p>Task: {returnedDetails[1]}</p>
       <p>Assigned: {returnedDetails[2]}</p>
       <p>Completed: {'' + returnedDetails[3]}</p>
