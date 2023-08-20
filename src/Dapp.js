@@ -1,7 +1,9 @@
+// https://docs.metamask.io/guide/ethereum-provider.html#using-the-provider
 
 import React, {useState} from 'react'
 import {ethers} from 'ethers'
 import SimpleStorage_abi from './contracts/SimpleStorage_abi.json'
+import { useEffect } from 'react'
 
 const Dapp = () => {
 
@@ -61,9 +63,16 @@ const Dapp = () => {
 		let tempSigner = tempProvider.getSigner();
 		setSigner(tempSigner);
 
+
 		let tempContract = new ethers.Contract(contractAddress, SimpleStorage_abi, tempSigner);
 		setContract(tempContract);	
 	}
+    
+    useEffect(() => {
+        provider.getCode(contractAddress)
+
+    }, [provider])
+    
 
 	const setHandler = (event) => {
 		event.preventDefault();
