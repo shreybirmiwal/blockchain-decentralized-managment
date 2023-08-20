@@ -9,6 +9,9 @@ function App() {
   const [taskId, setTaskId] = useState('');
   const [assignedAddress, setAssignedAddress] = useState('');
 
+
+  const [taskID, settaskID] = useState(null)
+
   useEffect(() => {
     loadData();
   }, []);
@@ -16,16 +19,21 @@ function App() {
   const loadData = async () => {
     if (window.ethereum) {
       const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
+      console.log(signer)
       const taskContract = new ethers.Contract(TASK_ADDRESS, TASK_ABI, signer);
 
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         setAccount(accounts[0]);
         setContract(taskContract);
+
+        settaskID(taskContract.returnDetails(0))
+
       } catch (error) {
         console.error('Error connecting to wallet:', error);
       }
+
     } else {
       console.log("MetaMask not installed; using read-only defaults");
       const provider = ethers.getDefaultProvider();
@@ -36,7 +44,7 @@ function App() {
 
   const createTask = async () => {
     if (contract && description) {
-      try {
+      try {        
         await contract.createTask(description);
         console.log('Task created successfully.');
       } catch (error) {
@@ -44,6 +52,10 @@ function App() {
       }
     }
   };
+
+  const test = () => {
+    console.log(taskID)
+  }
 
   const assignTask = async () => {
     if (contract && taskId && assignedAddress) {
@@ -69,6 +81,8 @@ function App() {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button onClick={createTask}>Create Task</button>
+        <button onClick={test}>Create Task</button>
+
       </div>
 
       <div>
@@ -86,6 +100,7 @@ function App() {
         />
         <button onClick={assignTask}>Assign Task</button>
       </div>
+
     </div>
   );
 }

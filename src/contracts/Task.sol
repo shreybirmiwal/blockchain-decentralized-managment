@@ -1,3 +1,4 @@
+// Task contract
 pragma solidity ^0.8.0;
 
 contract TaskManager {
@@ -33,4 +34,13 @@ contract TaskManager {
         tasks[_taskId].completed = true;
         emit TaskCompleted(_taskId);
     }
+
+    function returnDetails(uint256 _taskId) public view returns (uint256, string memory, address, bool) {
+        require(_taskId < tasks.length, "Task does not exist");
+
+        Task storage task = tasks[_taskId];
+        return (task.taskId, task.description, task.assignedTo, task.completed);
+    }
+
+
 }
